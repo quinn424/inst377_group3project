@@ -49,6 +49,7 @@
             // Key: 1060040-APIkeyre-C292F78E
             // To add, put '&k=' then the key to attach to url.
 
+            // Note that in this example, 'red+hot+chili+peppers%2C+pulp+fiction&type=music' is the search
             api = fetch('https://tastedive.com/api/similar?q=red+hot+chili+peppers%2C+pulp+fiction&type=music&k=1060040-APIkeyre-C292F78E')
             // API works, so now to make the rest of the site. Note: Limit of 300 requests per hour. Consider making a catch for if there are no requests left?
             table = document.createElement('table');
