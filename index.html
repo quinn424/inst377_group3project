@@ -1,11 +1,61 @@
 <!DOCTYPE html>
 <head>
-    <title>INST377 Group 3 Project</title>
-    <style></style>
+    <title>Movie Site - Home </title>
+    <style>
+        body{
+            background-color:aquamarine;
+            color:black;
+            margin:10px;
+        }
+        header{
+            background-color: blue;
+            color: whitesmoke;
+            padding:10px;
+            width:50%;
+            text-align:center;
+            margin:auto;
+            margin-bottom:10px;
+        }
+        main{
+            background-color:paleturquoise;
+            text-align:center;
+            margin:auto;
+            width:75%;
+            padding:10px;
+        }
+    </style>
 </head>
 <body>
-    <header></header>
-    <main></main>
+    <header>
+        <h1>Movie Site</h1>
+        <h3>By Quinn, Jaden, Lamyea</h3>
+    </header>
+    <main>
+        <p>Welcome to out webpage!</p>
+        <p>Put your search below</p>
+        <form onSubmit="callAPI()">
+            <input type="text">
+            <input type="submit" value="Submit">
+        </form>
+        <aside id="output">
+
+        </aside>
+    </main>
     
-    <script></script>
+    <script>
+        function callAPI(){
+            event.preventDefault();
+            alert('called'); 
+            // Key: 1060040-APIkeyre-C292F78E
+            // To add, put '&k=' then the key to attach to url.
+
+            api = fetch('https://tastedive.com/api/similar?q=red+hot+chili+peppers%2C+pulp+fiction&type=music&k=1060040-APIkeyre-C292F78E')
+            // API works, so now to make the rest of the site. Note: Limit of 300 requests per hour. Consider making a catch for if there are no requests left?
+            table = document.createElement('table');
+            tableData = document.createElement('tr');
+            tableData.textContent = 'Text';
+            table.appendChild(tableData);
+            document.getElementById('output').appendChild(table);
+        }
+    </script>
 </body>
