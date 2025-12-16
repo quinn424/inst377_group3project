@@ -68,7 +68,7 @@
                     console.log(res)
                     table = document.createElement('table');
                     tableData = document.createElement('tr');
-                    tableData.textContent = 'Titles: ';
+                    tableData.textContent = 'Titles for \"' + input + '\":' ;
                     table.appendChild(tableData);
                     for(i=0; i<res.similar.results.length; i++){      
                         tableData = document.createElement('tr');
