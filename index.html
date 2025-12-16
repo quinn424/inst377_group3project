@@ -55,14 +55,13 @@
         
         function callAPI(){
             event.preventDefault();
-            // alert('called'); 
             // Key: 1060040-APIkeyre-C292F78E
             // To add, put '&k=' then the key to attach to url.
 
             // Note that in the example, 'red+hot+chili+peppers%2C+pulp+fiction&type=music' is the search
             input = document.getElementById("input").value;
             api = fetch('https://tastedive.com/api/similar?q=movie:'+input+'&type=movie&k=1060040-APIkeyre-C292F78E')
-            .then((res)=>res.json()) //Getting blocked by 'Access-Control-Allow-Origin'?
+            .then((res)=>res.json())
                 .then((res) =>{
                     console.log(res)
                     table = document.createElement('table');
