@@ -43,7 +43,7 @@
     </header>
     <main>
         <p>Welcome to our webpage!</p>
-        <p>Put your search below (3 Results will be returned)</p>
+        <p>Put your search below. Similar titles will be returned.</p>
         <form onSubmit="callAPI()">
             <input type="text" id="input">
             <input type="submit" value="Submit">
@@ -70,9 +70,9 @@
                     tableData = document.createElement('tr');
                     tableData.textContent = 'Titles: ';
                     table.appendChild(tableData);
-                    for(i=0; i<res.similar.info.length; i++){      
+                    for(i=0; i<res.similar.results.length; i++){      
                         tableData = document.createElement('tr');
-                        tableData.textContent = res.similar.info[i].name;
+                        tableData.textContent = res.similar.results[i].name;
                         table.appendChild(tableData);
                     }
                     document.getElementById('output').appendChild(table);
