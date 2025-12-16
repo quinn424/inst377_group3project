@@ -22,6 +22,16 @@
             margin:auto;
             width:75%;
             padding:10px;
+            height:250px;
+        }
+        table{
+            margin:auto;
+            margin-top:10px;
+            border:5px black solid;
+            padding:10px;
+        }
+        tr{
+            border:3px black solid;
         }
     </style>
 </head>
@@ -34,29 +44,38 @@
         <p>Welcome to out webpage!</p>
         <p>Put your search below</p>
         <form onSubmit="callAPI()">
-            <input type="text">
+            <input type="text" id="input">
             <input type="submit" value="Submit">
         </form>
         <aside id="output">
-
         </aside>
     </main>
     
     <script>
+        
         function callAPI(){
             event.preventDefault();
-            alert('called'); 
+            // alert('called'); 
             // Key: 1060040-APIkeyre-C292F78E
             // To add, put '&k=' then the key to attach to url.
 
-            // Note that in this example, 'red+hot+chili+peppers%2C+pulp+fiction&type=music' is the search
-            api = fetch('https://tastedive.com/api/similar?q=red+hot+chili+peppers%2C+pulp+fiction&type=music&k=1060040-APIkeyre-C292F78E')
-            // API works, so now to make the rest of the site. Note: Limit of 300 requests per hour. Consider making a catch for if there are no requests left?
-            table = document.createElement('table');
-            tableData = document.createElement('tr');
-            tableData.textContent = 'Text';
-            table.appendChild(tableData);
-            document.getElementById('output').appendChild(table);
+            // Note that in the example, 'red+hot+chili+peppers%2C+pulp+fiction&type=music' is the search
+            input = document.getElementById("input").value;
+            api = fetch('https://tastedive.com/api/similar?q=movie:'+input+'&type=movie&k=1060040-APIkeyre-C292F78E')
+            .then((res)=>res.json()) //Getting blocked by 'Access-Control-Allow-Origin'?
+                .then((res) =>{
+                    console.log(res)
+                    table = document.createElement('table');
+                    tableData = document.createElement('tr');
+                    tableData.textContent = 'Titles: ';
+                    table.appendChild(tableData);
+                    for(i=0; i<res.similar.info.length; i++){      
+                        tableData = document.createElement('tr');
+                        tableData.textContent = res.similar.info[i].name;
+                        table.appendChild(tableData);
+                    }
+                    document.getElementById('output').appendChild(table);
+                })
         }
     </script>
 </body>
